@@ -1,0 +1,16 @@
+langchain
+langsmith
+langchain-community
+langchain-core
+langchain-upstage
+chromadb
+streamlit
+pandas
+python-dotenv
+numpy<2.0
+tabulate
+tqdm
+beautifulsoup4
+requests
+langchain-openai
+langchain-chroma

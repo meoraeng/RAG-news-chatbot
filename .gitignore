@@ -1,0 +1,67 @@
+# OS & Editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.env
+.env.*
+.venv/
+
+# Logs & outputs
+logs/
+output/
+*.log
+
+# Data & datasets
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.sqlite
+*.db
+*.db-journal
+*.jsonl
+
+# Large JSON article dumps (keep curated minimal datasets elsewhere)
+*articles_with_embeddings.json
+*articles.json
+page_source.html
+static_html.txt
+dynamic_html.txt
+
+# ChromaDB persistence
+chroma_db/
+**/chroma_db/
+
+# LangSmith/experiments caches
+langsmith/*
+
+# Images/graphs generated
+graph_*.png
+graph_*.svg
+graph_*.pdf
+
+# Local scratch & progress files
+crawler_progress.json
+
+# Anaconda projects
+src/anaconda_projects/
+
+# Node (if any future UI bits)
+node_modules/ 
