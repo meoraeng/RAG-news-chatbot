@@ -104,27 +104,30 @@ def load_components(prompt_key=DEFAULT_PROMPT_KEY):
     
     # 1. ChatUpstage LLM 로드
     chat = ChatUpstage()
-
-    # 2. Upstage 임베딩 모델 로드
-embeddings = UpstageEmbeddings(model="embedding-passage")
+    
+        # 2. Upstage 임베딩 모델 로드
+    embeddings = UpstageEmbeddings(model="embedding-passage")
 
     # 3. ChromaDB 벡터스토어 로드
-vectorstore = Chroma(
-        persist_directory="./chroma_db", 
-    embedding_function=embeddings
-)
+    vectorstore = Chroma(
+        persist_directory="./chroma_db",
+        embedding_function=embeddings
+    )
     
     # 4. 리트리버 설정
-retriever = vectorstore.as_retriever(
-    search_type="similarity_score_threshold",
+    retriever = vectorstore.as_retriever(
+        search_type="similarity_score_threshold",
         search_kwargs={'score_threshold': 0.4, 'k': 5}
-)
-
+    )
+    
     print("[INFO] 컴포넌트 로드 완료.")
     return chat, embeddings, vectorstore, retriever
 
-# --- 전역 컴포넌트 로드 ---
-chat, embeddings, vectorstore, retriever = load_components()
+# --- 전역 컴포넌트 (런타임 초기화) ---
+chat = None
+embeddings = None
+vectorstore = None
+retriever = None
 
 
 # --- RAG 체인 생성 함수 ---
@@ -238,17 +241,22 @@ def main():
     Streamlit 기반의 RAG 챗봇 UI를 구성하고 실행합니다.
     """
     st.set_page_config(page_title="RAG Chatbot Demo", page_icon="🤖")
+
+    global chat, embeddings, vectorstore, retriever
+    if chat is None or embeddings is None or vectorstore is None or retriever is None:
+        chat, embeddings, vectorstore, retriever = load_components()
+
     st.title("🤖 RAG Chatbot Demo")
-    st.caption("IT 기술 블로그 7곳의 데이터를 기반으로 답변하는 챗봇입니다.")
+    st.caption("IT 기술 블로그 및 뉴스 데이터를 기반으로 답변하는 챗봇입니다.")
 
     # --- UI 컨트롤러 ---
     col1, col2 = st.columns(2)
     with col1:
         rag_enabled = st.toggle("RAG (검색 증강 생성) 활성화", value=True)
     with col2:
-prompt_key = st.selectbox(
-    "프롬프팅 기법 선택:",
-    options=list(PROMPT_TEMPLATES.keys()),
+        prompt_key = st.selectbox(
+            "프롬프팅 기법 선택:",
+            options=list(PROMPT_TEMPLATES.keys()),
             index=0,
             disabled=not rag_enabled
         )
@@ -275,7 +283,7 @@ prompt_key = st.selectbox(
                 
                 response_generator = rag_chain.stream({"input": user_input})
                 
-        full_response = ""
+                full_response = ""
                 response_container = st.empty()
                 
                 for chunk in response_generator:
@@ -287,7 +295,7 @@ prompt_key = st.selectbox(
                 msgs.add_ai_message(full_response)
 
             # RAG 비활성화 시 (LLM 단독 응답)
-        else:
+            else:
                 llm_chain = (
                     {"input": RunnablePassthrough()}
                     | chat
