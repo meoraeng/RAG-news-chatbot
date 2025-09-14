@@ -45,6 +45,8 @@ Retrieval-Augmented Generation (RAG) 기반의 질의응답 챗봇입니다.
 
 
 ## 주요 기술스택
+- `Python 3.10+`
+- `BeautifulSoup4` (크롤링)
 - `LangChain`
 - `Upstage Solar LLM`
 - `Upstage Embeddings`
