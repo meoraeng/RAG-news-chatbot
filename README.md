@@ -3,12 +3,46 @@
 Retrieval-Augmented Generation (RAG) 기반의 질의응답 챗봇입니다.
 뉴스 정보 기반 RAG 챗봇 제작 및 프롬프트 기법 비교에 대한 논문 작성에 사용되었습니다.
 
-<p align="left">
-  <img src="docs/cover.png" alt="논문 표지" width="560">
-</p>
-<p align="left">
-  <img src="docs/toc.png" alt="논문 목차" width="560">
-</p>
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/fb3ef4a1-99e8-45ec-8cf0-e6bef6e4432e" alt="cover" width="420"></td>
+    <td><img src="https://github.com/user-attachments/assets/1007630c-4f4d-44c1-9678-99e038800b90" alt="toc" width="420"></td>
+  </tr>
+</table>
+
+## 실행화면
+
+<table>
+  <tr>
+    <th align="center">메인 화면</th>
+    <th align="center">프롬프트 선택</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/92d3f9f4-c56a-4422-9733-0c7d7ff28138" alt="메인 화면" width="420">
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/d05aafb5-6519-46bd-b269-0a6dd9bc4a07" alt="프롬프트 선택" width="420">
+    </td>
+  </tr>
+  <tr>
+    <th align="center">Zero-shot 예시</th>
+    <th align="center">Few-shot 예시</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/238c0ff7-68b1-4e24-ab62-d597392376a5" alt="Zero-shot 예시" width="420">
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/9a524819-87f1-4b3a-9dd5-7fd22b11556b" alt="Few-shot 예시" width="420">
+    </td>
+  </tr>
+</table>
+
+
+## 아키텍쳐
+<img width="1133" height="640" alt="RAG drawio" src="https://github.com/user-attachments/assets/d4149888-c009-4977-8bfb-13e24d2f860e" />
+
 
 ## 주요 기술스택
 - `LangChain`
